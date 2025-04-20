@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - CinemachineConfiner
   - Water
   - UI
-  - 
-  - 
+  - Cosmetic
+  - Player
   - 
   - 
   - 
@@ -44,14 +44,20 @@ TagManager:
   - name: Floor
     uniqueID: 3854087205
     locked: 0
-  - name: Background
+  - name: WalkInfront
     uniqueID: 411331827
+    locked: 0
+  - name: Collision
+    uniqueID: 1364850075
     locked: 0
   - name: Player
     uniqueID: 529901779
     locked: 0
   - name: Foreground
     uniqueID: 3407850451
+    locked: 0
+  - name: Decor
+    uniqueID: 693550901
     locked: 0
   m_RenderingLayers:
   - Default
