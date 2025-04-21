@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 5006584766608331350}
   - component: {fileID: 8438955696875374266}
   - component: {fileID: 4151775077975953898}
+  - component: {fileID: 4115597869595420440}
+  - component: {fileID: 4007499944253805144}
   m_Layer: 0
   m_Name: plantMob
   m_TagString: Untagged
@@ -186,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
   attackRange: 0
+  chaseRange: 5
   enemyType: {fileID: 0}
   attackCooldown: 2
   stopMovingWhileAttacking: 0
@@ -252,3 +255,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: f11f7b67b703e064d816fb0ad7530970, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &4115597869595420440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910608194418165990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf94e8ae7fdc9e943be080afd1da82ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteFlashMat: {fileID: 0}
+  restoreDefaultMatTime: 0.2
+--- !u!114 &4007499944253805144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910608194418165990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30dd0a765e57a674780671888104d1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldCoinPrefab: {fileID: 67423122144508583, guid: 24805a1918a6f544ea9734da643a33ef, type: 3}
+  healthGlobe: {fileID: 67423122144508583, guid: b2dbf5e2bcb7ef84faa956f3f20d928c, type: 3}

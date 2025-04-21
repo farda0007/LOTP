@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Runtime.CompilerServices;
 
 public class PlayerHealth : Singleton<PlayerHealth>
 {
+    public bool isDead { get; private set; }
     [SerializeField] private int maxHealth = 5;
     [SerializeField] private int knockBackThrustAmount = 10;
     [SerializeField] private float damageRecoveryTime = 1f;
@@ -14,6 +17,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private KnockBack knockBack;
     private Flash flash;
+    const string HEALTH_SLIDER = "HealthSlider";
+    const string SCENE_HASH = "Scene_1";
+
+    readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     protected override void Awake()
     {
@@ -25,6 +32,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void Start()
     {
+        isDead = false;
         currentHealth = maxHealth;
 
         UpdateHealthSlider();
@@ -50,6 +58,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
         UpdateHealthSlider();
+        CheckPlayerDead();
     }
 
     private IEnumerator DamageRecoveryRoutine()
@@ -68,11 +77,29 @@ public class PlayerHealth : Singleton<PlayerHealth>
         UpdateHealthSlider();
     }
 
+    private void CheckPlayerDead()
+    {
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+            currentHealth = 0;
+            GetComponent<Animator>().SetTrigger(DEATH_HASH);
+            StartCoroutine(DeathLoadSceneRoutine());
+        }
+    }
+
+    private IEnumerator DeathLoadSceneRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+        SceneManager.LoadScene(SCENE_HASH);
+    }
+
     private void UpdateHealthSlider()
     {
         if(healthSlider == null)
         {
-            healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
+            healthSlider = GameObject.Find(HEALTH_SLIDER).GetComponent<Slider>();
         }
 
         healthSlider.maxValue = maxHealth;
