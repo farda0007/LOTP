@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dad2cbe138bb346bd7e198484f7bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 5
   deathVFXPrefab: {fileID: 1030554265612735752, guid: 366a614a847e137459e91262eaa727fc, type: 3}
 --- !u!114 &8438955696875374266
 MonoBehaviour:
