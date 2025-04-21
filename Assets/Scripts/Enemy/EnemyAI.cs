@@ -9,6 +9,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private bool stopMovingWhileAttacking = false;
 
+    private SpriteRenderer spriteRenderer;
+    private Vector2 lastPosition;
+
+
     private bool canAttack = true;
 
     private enum State
@@ -25,18 +29,35 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         enemyPathfinding = GetComponent<EnemyPathfinding>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         state = State.Roaming;
     }
 
     private void Start()
     {
         roamPosition = GetRoamingPosition();
+        lastPosition = transform.position;
+
     }
 
     private void Update()
     {
         MovementStateControl();
+        FlipSprite();
+        lastPosition = transform.position;
     }
+
+    private void FlipSprite()
+    {
+        Vector2 moveDir = (Vector2)transform.position - lastPosition;
+
+        if (moveDir.x > 0.01f)
+            spriteRenderer.flipX = false; // Facing right
+        else if (moveDir.x < -0.01f)
+            spriteRenderer.flipX = true;  // Facing left
+    }
+
 
     private void MovementStateControl()
     {
